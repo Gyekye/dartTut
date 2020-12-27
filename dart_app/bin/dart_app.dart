@@ -12,6 +12,17 @@ void main(List<String> args) {
   animal.species = 'Canines';
   animal.newFunc('Dog');
   animal.displayFeature('claw');
+
+  // abstracts
+  var blockA = House();
+  blockA.displayRoomPrice(122);
+  blockA.displayRoomSize(10000);
+
+  // interfaces
+
+  var rentA = Rent();
+  rentA.amountToPay(10000);
+  rentA.displayPendingRoomTax(1000000);
 }
 
 // Defined Class types
@@ -89,12 +100,47 @@ class Animal extends Organism with Feature {
   void newFunc(var func) {
     print('I am an animal $func');
   }
-
-
 }
 
 class Feature {
   void displayFeature(var feature) {
     print('My special feature is $feature');
+  }
+}
+
+// Interface and Abstracts
+abstract class Room {
+  void displayRoomSize(int size) {
+    print('Your room size is $size');
+  }
+
+  void displayRoomPrice(int price) {
+    print('Your room cost $price');
+  }
+}
+
+class Tax {
+  void displayPendingRoomTax(int tax) {
+    print('you have $tax ghs to pay ');
+  }
+
+  void amountToPay(int amount) {
+    print('You are about to pay $amount');
+  }
+}
+
+class House extends Room {}
+
+class Rent implements Tax {
+  @override
+  void amountToPay(int amount) {
+    // TODO: implement amountToPay
+    print('You are payng $amount');
+  }
+
+  @override
+  void displayPendingRoomTax(int tax) {
+    // TODO: implement displayPendingRoomTax
+    print('You are oweing $tax');
   }
 }
